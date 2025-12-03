@@ -16604,6 +16604,10 @@ section.privacypolicy-sec p {
 .home-container .row.lead-img-top {
   align-items: flex-start;
 }
+
+.row.lead-img-top:nth-child(even) {
+  flex-direction: row-reverse !important;
+}
 .about-sec5 p.whehave-box,
 .historybox .inner-sec-heading,
 .inner-sec6.about-sec6 .inner-sec-heading,
