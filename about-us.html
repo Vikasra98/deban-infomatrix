@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="about.css" />
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <style>
+    .leadership-section {
+      padding: 100px 0;
+      background: linear-gradient(
+        135deg,
+        #1e3c72 0%,
+        #2a5298 50%,
+        #7e22ce 100%
+      );
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leadership-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 35px,
+          rgba(255, 255, 255, 0.03) 35px,
+          rgba(255, 255, 255, 0.03) 70px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 35px,
+          rgba(255, 255, 255, 0.03) 35px,
+          rgba(255, 255, 255, 0.03) 70px
+        );
+      opacity: 0.6;
+    }
+
+    .leadership-section::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 1px
+      );
+      background-size: 50px 50px;
+      animation: movePattern 20s linear infinite;
+    }
+
+    @keyframes movePattern {
+      0% {
+        transform: translate(0, 0);
+      }
+      100% {
+        transform: translate(50px, 50px);
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(-50px);
+      transition: all 1s ease;
+    }
+
+    .section-header.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #fbbf24;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      border-radius: 2px;
+    }
+
+    .section-description {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 600px;
+      margin: 30px auto 0;
+      line-height: 1.8;
+    }
+
+    .leaders-container {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .leader-box {
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 25px;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(50px) scale(0.95);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .leader-box.animate {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .leader-box:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+    }
+
+    .leader-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #f59e0b);
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .leader-content {
+      display: flex;
+      align-items: center;
+      padding: 50px;
+      gap: 40px;
+    }
+
+    .leader-avatar {
+      width: 180px;
+      height: 180px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .avatar-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: #ffffff;
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .avatar-circle::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2, #fbbf24);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .leader-box:hover .avatar-circle::before {
+      opacity: 1;
+      animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .star-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #ffffff;
+      box-shadow: 0 5px 15px rgba(251, 191, 36, 0.5);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(251, 191, 36, 0.5);
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(251, 191, 36, 0.7);
+      }
+    }
+
+    .leader-details {
+      flex: 1;
+    }
+
+    .leader-name {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .leader-position {
+      font-size: 1.3rem;
+      color: #667eea;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .leader-company {
+      font-size: 1rem;
+      color: #64748b;
+      font-weight: 500;
+      margin-bottom: 25px;
+      padding-left: 20px;
+      border-left: 3px solid #fbbf24;
+    }
+
+    .leader-bio {
+      font-size: 1.05rem;
+      color: #475569;
+      line-height: 1.9;
+      position: relative;
+    }
+
+    .quote-icon {
+      position: absolute;
+      top: -10px;
+      left: -30px;
+      font-size: 3rem;
+      color: rgba(102, 126, 234, 0.15);
+    }
+
+    .decorative-line {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      margin: 20px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 992px) {
+      .leader-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 30px;
+      }
+
+      .leader-avatar {
+        width: 150px;
+        height: 150px;
+      }
+
+      .avatar-circle {
+        font-size: 3rem;
+      }
+
+      .leader-name {
+        font-size: 2rem;
+      }
+
+      .leader-company {
+        border-left: none;
+        border-top: 3px solid #fbbf24;
+        padding-left: 0;
+        padding-top: 10px;
+        display: inline-block;
+      }
+
+      .quote-icon {
+        position: static;
+        display: block;
+        margin: 0 auto 15px;
+      }
+
+      .decorative-line {
+        margin: 20px auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2.5rem;
+      }
+
+      .leadership-section {
+        padding: 60px 0;
+      }
+    }
+  </style>
+  <body>
+    <!-- NAVBAR -->
+    <header class="">
+      <!--right panel start here -->
+      <div class="rightpanel">
+        <!-- <div class="gate-in-tuchbtn">
+          <i class="fas fa-phone lute"></i> submit query
+        </div> -->
+      </div>
+      <!--right panel end here-->
+      <div class="home-container">
+        <div class="row row position-relative">
+          <div class="col-sm-3 col-md-3 col-xs-12 logo">
+            <a
+              href="https://go4customer.com/"
+              aria-label="Read more about Go4customer"
+            >
+              <img
+                src="/update-images//logo.png"
+                alt="Read more about Go4customer"
+                height="64.2188"
+                width="250"
+              />
+              <!-- <img  src="https://go4customer.com/img/update-images/go4customer-ch1-centa.svg" alt=""/> -->
+            </a>
+            <!-- <picture class="great-place">
+                            <source media="(min-width:650px)" srcset="https://cdn.go4customer.com/update-images/Certification-Badge.webp">
+                            <source media="(min-width:320px)" srcset="https://cdn.go4customer.com/update-images/Certification-Badge-mob.webp"> <img src="https://cdn.go4customer.com/update-images/Certification-Badge.webp" alt="Great Place to Work Certification Badge"> </picture> -->
+          </div>
+          <div class="col-sm-9 col-md-9 col-xs-12 text-right unset-position">
+            <div class="navigation">
+              <ul class="main-nav">
+                <li class="widthnavnavbx">
+                  <a href="/about-us.html">About</a>
+                </li>
+                <li class="widthnavnavbx">
+                  <a href="javascript:void(0)">Services</a>
+                </li>
+                <li class="widthnavnavbx">
+                  <a href="javascript:void(0)">CSR</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">CONTACT</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="home-sec1 inner-sec1">
+      <div class="slider-img">
+        <img
+          src="https://go4customer.com/img/update-images/about-us.jpg"
+          alt=""
+          height="813"
+          width="1905"
+        />
+      </div>
+      <div class="banner-caption">
+        <div class="home-container">
+          <div class="row">
+            <div
+              class="col-sm-12 wow fadeInUp text-center animated"
+              style="visibility: visible"
+            >
+              <h1 class="banner-heading">About Us</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="inner-sec3 about-sec3 sec-5-topmrnn">
+      <div class="home-container">
+        <div class="row mob-btm-brdr">
+          <div
+            class="col-sm-12 col-md-12 col-xs-12 wow fadeInUp animated"
+            style="visibility: visible"
+          >
+            <div class="update-breadcrumb"></div>
+            <h2 class="inner-sec-heading text-center">
+              We predict the future by creating it!
+            </h2>
+            <p class="text-center">
+              <strong>Overview-The Winner stands alone!</strong>
+            </p>
+            <p>
+              Deban Infomatrix Pvt. Ltd. delivers strategic consulting,
+              performance modelling and contact center operations across
+              financial services, service-oriented businesses, and
+              growth-focused enterprises.
+            </p>
+            <p>
+              We operate on the principle that clarity, discipline and
+              data-driven execution enable sustainable and scalable performance.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="vision-mission-section">
+      <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+
+      <div class="container">
+        <!-- <div class="section-title"> -->
+        <h2 class="inner-sec-heading text-center text-white">
+          Our Vision & Mission
+        </h2>
+        <!-- <h2>Our Vision & Mission</h2> -->
+        <!-- <div class="underline"></div> -->
+        <p class="text-center mb-5 text-white">
+          <strong>Driving Excellence, Inspiring Growth</strong>
+        </p>
+        <!-- <p>Driving Excellence, Inspiring Growth</p> -->
+        <!-- </div> -->
+
+        <div class="row g-5">
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="vision-mission-card vision-card">
+              <div class="card-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80"
+                  alt="Vision"
+                  class="card-image"
+                />
+                <div class="card-image-overlay"></div>
+                <div class="card-badge">Vision</div>
+              </div>
+
+              <div class="card-body-content">
+                <div class="card-icon">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="card-title">Our Vision</h3>
+                <div class="card-content">
+                  <div class="quote-mark">"</div>
+                  To empower businesses with intelligence and execution,
+                  enabling sustainable growth and meaningful impact.
+                </div>
+                <div class="decorative-line"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="vision-mission-card mission-card">
+              <div class="card-image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
+                  alt="Mission"
+                  class="card-image"
+                />
+                <div class="card-image-overlay"></div>
+                <div class="card-badge">Mission</div>
+              </div>
+
+              <div class="card-body-content">
+                <div class="card-icon">
+                  <i class="fas fa-bullseye"></i>
+                </div>
+                <h3 class="card-title">Our Mission</h3>
+                <div class="card-content">
+                  <div class="quote-mark">"</div>
+                  To combine consulting expertise, operational excellence and
+                  community responsibility to help organizations grow with
+                  clarity and confidence.
+                </div>
+                <div class="decorative-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Approach section -->
+    <section
+      class="approach-section d-flex align-items-center flex-column justify-content-center"
+    >
+      <h2 class="inner-sec-heading text-center text-dark">Our Approach</h2>
+      <p class="text-center">
+        <strong>Intelligence + Execution</strong>
+      </p>
+
+      <div class="approach-grid">
+        <div class="approach-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Data-Backed Modelling</h3>
+          <p>
+            We leverage advanced analytics and insights to create strategies
+            that are rooted in real data, ensuring precision and effectiveness
+            in every decision.
+          </p>
+        </div>
+
+        <div class="approach-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Customer-Centric Frameworks</h3>
+          <p>
+            Our methodologies place your customers at the heart of everything we
+            do, creating experiences that drive satisfaction and loyalty.
+          </p>
+        </div>
+
+        <div class="approach-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3>Transparent KPIs</h3>
+          <p>
+            Clear, measurable metrics that provide full visibility into
+            performance, enabling informed decisions and continuous improvement.
+          </p>
+        </div>
+
+        <div class="approach-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Operational Excellence</h3>
+          <p>
+            Streamlined processes and best practices that maximize efficiency
+            while maintaining the highest standards of quality.
+          </p>
+        </div>
+
+        <div class="approach-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Measurable Outcomes</h3>
+          <p>
+            We focus on delivering tangible results that can be quantified,
+            tracked, and optimized for sustained success.
+          </p>
+        </div>
+
+        <div class="approach-card">
+          <div class="icon-wrapper">
+            <i class="fas fa-heart"></i>
+          </div>
+          <h3>Social Responsibility at the Core</h3>
+          <p>
+            Commitment to ethical practices and positive social impact, ensuring
+            our success contributes to a better world.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="leadership-section">
+      <div class="ledership_container">
+        <div class="section-header scroll-animate">
+          <div class="section-subtitle">Meet Our Visionaries</div>
+          <h2 class="section-title">Leadership Team</h2>
+          <p class="section-description">
+            Driven by passion, guided by excellence. Our leaders bring decades
+            of expertise and unwavering commitment to drive Deban Infomatrix
+            forward.
+          </p>
+        </div>
+
+        <div class="leaders-container">
+          <div class="leader-box scroll-animate" style="transition-delay: 0.2s">
+            <div class="leader-content">
+              <div class="leader-avatar">
+                <div class="avatar-circle">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="star-badge">
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+              <div class="leader-details">
+                <h3 class="leader-name">Ajay Kumar Yadav</h3>
+                <div class="leader-position">Managing Director</div>
+                <div class="leader-company">Deban Infomatrix</div>
+                <div class="decorative-line"></div>
+                <div class="leader-bio">
+                  <i class="fas fa-quote-left quote-icon"></i>
+                  A visionary leader with extensive experience in business
+                  strategy and operational excellence. Under his guidance, Deban
+                  Infomatrix has achieved remarkable growth and established
+                  itself as a trusted name in the industry. His commitment to
+                  innovation and customer satisfaction drives the company's
+                  success and positions us at the forefront of technological
+                  advancement.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="leader-box scroll-animate" style="transition-delay: 0.4s">
+            <div class="leader-content">
+              <div class="leader-avatar">
+                <div class="avatar-circle">
+                  <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="star-badge">
+                  <i class="fas fa-star"></i>
+                </div>
+              </div>
+              <div class="leader-details">
+                <h3 class="leader-name">Pushpa Yadav</h3>
+                <div class="leader-position">Director</div>
+                <div class="leader-company">Deban Infomatrix</div>
+                <div class="decorative-line"></div>
+                <div class="leader-bio">
+                  <i class="fas fa-quote-left quote-icon"></i>
+                  Provides strategic governance, administrative oversight,
+                  financial discipline, and CSR leadership. Pushpa drives
+                  institutional development for Deban Academy and ensures strong
+                  governance across business and social initiatives. Her
+                  dedication to corporate social responsibility and educational
+                  excellence has positioned the organization as a leader in
+                  community development and sustainable growth.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -80px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const animateElements = document.querySelectorAll(".scroll-animate");
+        animateElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("darkHeader");
+        } else {
+          header.classList.remove("darkHeader");
+        }
+      });
+    </script>
+  </body>
+</html>
